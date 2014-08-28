@@ -6,23 +6,163 @@ html {
 	background-size: cover;
 }
 
+
+.block-shadow {
+	-webkit-box-shadow: 0px 6px 11px 6px rgba(0, 0, 0, 0.67);
+	-moz-box-shadow:    0px 6px 11px 6px rgba(0, 0, 0, 0.67);
+	box-shadow:         0px 6px 11px 6px rgba(0, 0, 0, 0.67);
+}
+
+.white-on-orange {
+	background:#ff5c26;
+	color:white;
+}
+
+.orange {
+	color:#ff5c26;
+	font-size:23px;
+}
+
 #content-wraper {
-	width:1119px;
+	width:1340px;
 	height:100%;
 	margin:0px auto;
 	margin-top:10px;
 }
 
-#header-bg-img {
-	overflow:hidden;
-	margin: -75px 0 0 -100px;
-}
-
-#header-bg-filter {
+#main {
 	width:1119px;
-	position:absolute;
+	float:left;
 }
 
-#post-block {
-	margin-top:170px;
+#head_img {
+	max-height:170px;
+	overflow:hidden;
 }
+
+#post-wraper {
+	background:#262626;
+	color:#464646;
+}
+
+#post {
+	padding:6px;
+	margin-left:60px;
+	margin-right:60px;
+}
+
+#buttons-wraper {
+	min-height:90px;
+	background:#262626;
+	display:table;
+	width:100%;
+}
+
+#buttons {
+	padding-top:30px;
+	display:table-cell;
+	vertical-align:bottom;
+	text-align:center;
+	padding-bottom:10px;
+	padding-left:200px;
+}
+
+
+.btn {
+	width:320px;
+	height:60px;
+	display:block;
+	text-indent:0px;
+	text-decoration:none;
+	text-align:center;
+	text-decoration:none;
+	font-size:30px;
+	line-height: 60px;
+}
+
+.btn:hover {
+	background:#ba441b;
+}
+
+#show-comments-btn {
+	float:left;
+	margin-right:0px;
+}
+
+#post-comment-btn {
+	float:left;
+	margin-left:120px;
+}
+
+#comments-wraper {
+	background:#262626;
+}
+
+#comments {
+	margin-left:60px;
+	margin-right:60px;
+	padding-top:15px;
+	padding-bottom:30px;
+}
+
+.comment {
+	display:block;
+	overflow:hidden;
+	margin-bottom:30px;
+}
+
+.comment-info {
+	width:100px;
+	float:left;
+}
+
+.comment-body {
+	float:left;
+	margin-top:25px;
+	margin-left:40px;
+	width:760px;
+	background:#363636;
+	color:#6e6e6e;
+
+}
+
+.comment-author {
+	width:100px;
+	text-align:center;
+}
+
+.comment-avatar {
+	width:100px;
+	height:100px;
+	display:table;
+	background:#ff5c26;
+}
+
+.comment-no-avatar {
+	margin:0 auto;
+	font-size:20px;
+	text-align:center;
+	display:table-cell;
+	vertical-align:middle;
+}
+
+.comment-date {
+	width:100px;
+	text-align:center;
+}
+
+
+
+#sidebar {
+	margin-top:170px;
+	margin-left:20px;
+	width:200px;
+	background:#262626;
+	margin-left:20px;
+	width:200px;
+	float:left;
+}
+
+
+
+
