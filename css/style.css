@@ -1,0 +1,28 @@
+html {
+	background: url(../img/bg.png) no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+#content-wraper {
+	width:1119px;
+	height:100%;
+	margin:0px auto;
+	margin-top:10px;
+}
+
+#header-bg-img {
+	overflow:hidden;
+	margin: -75px 0 0 -100px;
+}
+
+#header-bg-filter {
+	width:1119px;
+	position:absolute;
+}
+
+#post-block {
+	margin-top:170px;
+}
