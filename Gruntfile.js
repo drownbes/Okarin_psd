@@ -15,7 +15,7 @@ module.exports = function(grunt) {
 		watch: {
 			bower: {
 				files: ['bower.json'],
-				tasks: ['wiredep']
+				tasks: ['copy']
 			},
 			js: {
 				files: ['<%= config.app %>/js/{,*/}*.js'],
@@ -56,8 +56,7 @@ module.exports = function(grunt) {
 			debug: {
 				options: {
 					base: [
-						'<%= config.dist %>',
-						'.'//TODO: copy deps to dist directory
+						'<%= config.dist %>'
                     ]
 				}
 			}
@@ -66,16 +65,6 @@ module.exports = function(grunt) {
 		clean: {
 			src: {
 				src: ['<%= config.dist %>/*', '<%= config.dist %>/../.sass-cache']
-			}
-		},
-
-		wiredep: {
-			options: {
-				dependencies: true,
-				devDependencies: true,
-			},
-			src: {
-				src: ['<%= config.app %>/{,*/}*.jade']
 			}
 		},
 
@@ -149,7 +138,11 @@ module.exports = function(grunt) {
                         'js/{,*/}*.js',
                     ]
                 }]
-            }
+            },
+			css: {
+				src: 'bower_components/normalize-css/normalize.css',//TODO: grunt-wiredep-copy
+			   	dest: '<%= config.dist %>/'
+			}
 		},
 
 		'gh-pages': {
@@ -158,17 +151,15 @@ module.exports = function(grunt) {
 			},
 			src: ['**']
 		}
-
 	});
 
 	grunt.registerTask('debug', 'Watch files and run webserver on 9000 port', function () {
         grunt.task.run([
             'newer:jshint',
-			'wiredep',
 			'newer:imagemin',
 			'newer:jade',
 			'newer:sass',
-			'newer:copy:js',
+			'newer:copy',
             'connect',
             'watch'
         ]);
@@ -177,11 +168,10 @@ module.exports = function(grunt) {
 	grunt.registerTask('build', 'Build project in app->dist', function () {
         grunt.task.run([
             'imagemin',
-			'wiredep',
 			'jade',
 			'sass',
 			'jshint',
-			'copy:js'
+			'copy'
         ]);
     });
 };
