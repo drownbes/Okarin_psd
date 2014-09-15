@@ -7,7 +7,9 @@ $arial-font:arial,sans-serif;
 
 
 //images
-$background-img: url(img/bg.png);
+$background-img: url(../img/bg.png);
+$show-comments-btn-img: url("../img/comments-icon.png");
+$post-comment-btn-img: url("../img/post-comment-icon.png");
 
 //colors
 $main-bg-clr:#262626;
@@ -21,8 +23,8 @@ $sidebar-width:1119px;
 
 
 html {
-	background: $background-img no-repeat center center fixed;
 	@include vendor-prefix(background-size, cover);
+	background: $background-img no-repeat center center fixed;
 }
 
 .block {
@@ -54,12 +56,11 @@ html {
 #wrapper {
 	width:1340px;
 	height:100%;
-	margin:0px auto;
-	margin-top:10px;
+	margin:10px auto;
 }
 
 #content {
-	@extend .block;
+	//@extend .block;
 	float:left;
 	width:1119px;
 
@@ -94,13 +95,13 @@ html {
 			margin:15px auto;
 			#show-comments-btn {
 				@extend .btn;
-				background-image: url("img/comments-icon.png");
+				background-image: $show-comments-btn-img;
 			}
 
 			#post-comment-btn {
-				@extend .btn;
 				margin-left:120px;
-				background-image: url("img/post-comment-icon.png");
+				@extend .btn;
+				background-image: $post-comment-btn-img;
 			}
 		}
 	}
