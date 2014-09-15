@@ -15,7 +15,7 @@ module.exports = function(grunt) {
 		watch: {
 			bower: {
 				files: ['bower.json'],
-				tasks: ['copy']
+				tasks: ['wiredepCopy']
 			},
 			js: {
 				files: ['<%= config.app %>/js/{,*/}*.js'],
@@ -138,10 +138,21 @@ module.exports = function(grunt) {
                         'js/{,*/}*.js',
                     ]
                 }]
-            },
-			css: {
-				src: 'bower_components/normalize-css/normalize.css',//TODO: grunt-wiredep-copy
-			   	dest: '<%= config.dist %>/'
+            }
+		},
+
+		wiredepCopy: {
+			src: {
+				options: {
+					src: 'bower_components',
+					dest: '<%= config.dist %>/bower_components',
+					wiredep: {
+						dependencies: true,
+						devDependencies: false,
+						ignorePath: '../',
+						src: '<%= config.app %>/{,*/}*.jade'
+					}
+				}
 			}
 		},
 
@@ -171,7 +182,8 @@ module.exports = function(grunt) {
 			'jade',
 			'sass',
 			'jshint',
-			'copy'
+			'copy:js',
+			'wiredepCopy'
         ]);
     });
 };
