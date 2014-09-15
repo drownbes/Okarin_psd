@@ -1,0 +1,57 @@
+- var lorem = 'Adipisicing asperiores provident magni exercitationem nobis quas, rem provident quis alias doloremque voluptatem sit. Voluptatum inventore officiis eum itaque quia modi deleniti ullam ipsum minima. Deserunt quos blanditiis vel deserunt'
+
+mixin comment(author,avatar,date)
+	.comment
+		.comment-info
+			.comment-author
+				= author
+			.comment-avatar
+				= avatar
+			.comment-date
+				= date
+		.comment-body
+			if block
+				block
+			else
+				| #{lorem}
+
+doctype html
+html
+	head
+		meta(charset="utf-8")
+		meta(name="viewport",content="width=device-width")
+		title 0karin psd
+		//bower:css
+		link(rel='stylesheet', href='../vendor/normalize-css/normalize.css')
+		//endbower
+		link(rel="stylesheet", href="css/style.css")
+	body
+		#wrapper
+			#content
+				#top-image
+					img(src="img/header_img.png")
+				.post-wrapper
+					article.post
+						header.post-header
+							h1.post-header-h1.
+								Header
+						| Post text
+				#buttons-wrapper
+					#buttons
+						a#show-comments-btn
+							| Show comments
+						a#post-comment-btn
+							| Post comment
+
+				#comments-wrapper
+					#comments
+						each val in [1,2,3,4,5,6]
+							+comment('Anonimus' + val,'NO AVATAR','12.12.1'+val)
+
+			#sidebar
+				#news-block
+					#search
+						img(src="img/search-icon.png")
+						//input(type='text', id='search-input')
+				#calendar-block.
+					calendar
