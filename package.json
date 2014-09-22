@@ -13,6 +13,7 @@
     "grunt-contrib-watch": "^0.6.1",
     "grunt-gh-pages": "^0.9.1",
     "grunt-newer": "^0.7.0",
+    "grunt-todo": "^0.4.0",
     "grunt-wiredep-copy": "^0.1.0",
     "install": "^0.1.7",
     "load-grunt-tasks": "^0.6.0",

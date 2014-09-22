@@ -1,16 +1,16 @@
 'use strict';
 module.exports = function(grunt) {
 	require('load-grunt-tasks')(grunt);
-    require('time-grunt')(grunt);
+	require('time-grunt')(grunt);
 
 	var config = {
-        app: 'app',
-        dist: 'dist'
-    };
+		app: 'app',
+		dist: 'dist'
+	};
 
 	// Project configuration.
 	grunt.initConfig({
-		config:config,
+		config: config,
 
 		watch: {
 			bower: {
@@ -31,20 +31,27 @@ module.exports = function(grunt) {
 			},
 			jade: {
 				files: ['<%= config.app %>/{,*/}*.jade'],
-				tasks:['jade']
+				tasks: ['jade']
 			},
 			img: {
 				files: ['<%= config.app %>/img/{,*/}*.png'],
-				tasks:['imagemin']
+				tasks: ['imagemin']
 			},
 			livereload: {
 				options: {
 					livereload: '<%= connect.options.livereload %>'
 				},
-				files: [
-					'<%= config.app %>/**'
-				]
+				files: ['<%= config.app %>/**'],
+				tasks: ['todo']
 			}
+		},
+
+		todo: {
+			options: {
+				file: "Report.md",
+				githubBoxes: true
+			},
+			src: ['<%= config.app %>/**'],
 		},
 
 		connect: {
@@ -55,9 +62,7 @@ module.exports = function(grunt) {
 			},
 			debug: {
 				options: {
-					base: [
-						'<%= config.dist %>'
-                    ]
+					base: ['<%= config.dist %>']
 				}
 			}
 		},
@@ -71,17 +76,19 @@ module.exports = function(grunt) {
 		imagemin: {
 			dynamic: {
 				options: {
-					optimizationLevel:3
+					optimizationLevel: 3
 				},
-				files: [
-					{
-						expand: true,     // Enable dynamic expansion.
-						dot: true,
-						cwd: '<%= config.app %>',      // Src matches are relative to this path.
-						dest: '<%= config.dist %>',   // Destination path prefix.
-						src: ['img/{,*/}*.png'], // Actual pattern(s) to match.
-					},
-				],
+				files: [{
+					expand: true,
+					// Enable dynamic expansion.
+					dot: true,
+					cwd: '<%= config.app %>',
+					// Src matches are relative to this path.
+					dest: '<%= config.dist %>',
+					// Destination path prefix.
+					src: ['img/{,*/}*.png'],
+					// Actual pattern(s) to match.
+				}, ],
 			}
 		},
 
@@ -91,7 +98,7 @@ module.exports = function(grunt) {
 			},
 			gruntfile: {
 				options: {
-					node:true
+					node: true
 				},
 				src: 'Gruntfile.js'
 			},
@@ -102,43 +109,48 @@ module.exports = function(grunt) {
 
 		jade: {
 			options: {
-				pretty:true
+				pretty: true
 			},
 			src: {
-				expand: true,     // Enable dynamic expansion.
-				cwd: '<%= config.app %>',      // Src matches are relative to this path.
+				expand: true,
+				// Enable dynamic expansion.
+				cwd: '<%= config.app %>',
+				// Src matches are relative to this path.
 				src: ['{,*/}*.jade'],
-				dest: '<%= config.dist %>/',   // Destination path prefix.
-				ext: '.html',   // Dest filepaths will have this extension.
+				dest: '<%= config.dist %>/',
+				// Destination path prefix.
+				ext: '.html',
+				// Dest filepaths will have this extension.
 				extDot: 'first'
 			}
 		},
 
 		sass: {
-			options: {
-			},
+			options: {},
 			src: {
-				expand: true,     // Enable dynamic expansion.
-				cwd: '<%= config.app %>',      // Src matches are relative to this path.
+				expand: true,
+				// Enable dynamic expansion.
+				cwd: '<%= config.app %>',
+				// Src matches are relative to this path.
 				src: ['css/{,*/}*.scss'],
-				dest: '<%= config.dist %>/',   // Destination path prefix.
-				ext: '.css',   // Dest filepaths will have this extension.
+				dest: '<%= config.dist %>/',
+				// Destination path prefix.
+				ext: '.css',
+				// Dest filepaths will have this extension.
 				extDot: 'first'
 			}
 		},
 
 		copy: {
-            js: {
-                files: [{
-                    expand: true,
-                    dot: true,
-                    cwd: '<%= config.app %>',
-                    dest: '<%= config.dist %>',
-                    src: [
-                        'js/{,*/}*.js',
-                    ]
-                }]
-            }
+			js: {
+				files: [{
+					expand: true,
+					dot: true,
+					cwd: '<%= config.app %>',
+					dest: '<%= config.dist %>',
+					src: ['js/{,*/}*.js', ]
+				}]
+			}
 		},
 
 		wiredepCopy: {
@@ -164,26 +176,12 @@ module.exports = function(grunt) {
 		}
 	});
 
-	grunt.registerTask('debug', 'Watch files and run webserver on 9000 port', function () {
-        grunt.task.run([
-            'newer:jshint',
-			'newer:imagemin',
-			'newer:jade',
-			'newer:sass',
-			'newer:copy',
-            'connect',
-            'watch'
-        ]);
-    });
+	grunt.registerTask('debug', 'Watch files and run webserver on 9000 port', function() {
+		grunt.task.run(['newer:jshint', 'newer:imagemin', 'newer:jade', 'newer:sass', 'newer:copy', 'connect', 'watch']);
+	});
 
-	grunt.registerTask('build', 'Build project in app->dist', function () {
-        grunt.task.run([
-            'imagemin',
-			'jade',
-			'sass',
-			'jshint',
-			'copy:js',
-			'wiredepCopy'
-        ]);
-    });
+	grunt.registerTask('build', 'Build project in app->dist', function() {
+		grunt.task.run(['imagemin', 'jade', 'sass', 'jshint', 'copy:js', 'wiredepCopy']);
+	});
 };
+
